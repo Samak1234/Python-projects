@@ -1,3 +1,4 @@
+
 """
 Number Guessing Game
 
@@ -7,18 +8,31 @@ Number Guessing Game
 - Tracks number of attempts
 """
 import random # Built-in module used to generate random numbers
-print("choose difficulty")
-print("1.Easy")
-print("2.Medium")
-print("3.Tough")
+
+
 while True:
-    # Generate a random number between 1 and 100 (this stays constant for one game)
-    secret = random.randint(1,100)
+    print("choose difficulty 1.Easy 2.Medium 3.Tough")
+    difficulty=int(input("Choose difficulty level"))
+    if difficulty==1:
+        secret = random.randint(1,50)
+        max_attempts=20
+    elif difficulty==2:
+        secret = random.randint(1,100)
+        max_attempts=10
+    else:
+         secret=random.randint(1,500)
+         max_attempts=7
+    
+    
     # Counter to track how many attempts the user makes
     no_of_attempts=0
-
+    
     while True:
-        if no_of_attempts>=2:
+        
+        
+        print(f"remaining no of attempts are as follow,{max_attempts-no_of_attempts}")
+        
+        if no_of_attempts>=max_attempts:
             print("Attempts Exhausted better luck next time")
             break #stop the game
         try:
@@ -29,7 +43,7 @@ while True:
             continue #skip to next iteration
         # Increment attempt count after each guess
         no_of_attempts+=1
-
+        
         # Check if the guess matches the secret number
         if guess == secret:
             print("Ps you got it,Congratulations it's Correct Man") # User guessed correctly
