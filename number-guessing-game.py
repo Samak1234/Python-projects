@@ -10,34 +10,38 @@ Number Guessing Game
 """
 import random # Built-in module used to generate random numbers
 
-limit_replay=0
+limit_replay = 0
 while True:
-    
-    if limit_replay>=3:
+
+    if limit_replay >= 3:
         print("Number of replays Exhausted")
         break
+
     print("choose difficulty 1.Easy 2.Medium 3.Tough")
-    difficulty=int(input("Choose difficulty level"))
-    if difficulty==1:
-        secret = random.randint(1,50)
-        max_attempts=20
-    elif difficulty==2:
-        secret = random.randint(1,100)
-        max_attempts=10
-    else:
-         secret=random.randint(1,500)
-         max_attempts=7
-    
-    
+    try:
+        difficulty = int(input("Choose difficulty level: "))
+        # Generate a random number based on difficulty (this stays constant for one game)
+        if difficulty == 1:
+            secret = random.randint(1, 50)
+            max_attempts = 20
+        elif difficulty == 2:
+            secret = random.randint(1, 100)
+            max_attempts = 10
+        else:
+            secret = random.randint(1, 500)
+            max_attempts = 7
+    except:
+        print("Please enter a valid number!")
+        continue
+
     # Counter to track how many attempts the user makes
-    no_of_attempts=0
-    
+    no_of_attempts = 0
+
     while True:
-        
-        
-        print(f"remaining no of attempts are as follow,{max_attempts-no_of_attempts}")
-        
-        if no_of_attempts>=max_attempts:
+
+        print(f"remaining no of attempts are as follow,{max_attempts - no_of_attempts}")
+
+        if no_of_attempts >= max_attempts:
             print("Attempts Exhausted better luck next time")
             break #stop the game
         try:
@@ -46,9 +50,10 @@ while True:
         except:
             print("Please enter a whole number!")
             continue #skip to next iteration
+
         # Increment attempt count after each guess
-        no_of_attempts+=1
-        
+        no_of_attempts += 1
+
         # Check if the guess matches the secret number
         if guess == secret:
             print("Ps you got it,Congratulations it's Correct Man") # User guessed correctly
@@ -58,11 +63,11 @@ while True:
         elif guess < secret:
             print("Guess Higher number") # Hint: number is bigger
         else:
-            print("Guess lower number")  # Hint: number is smaller
+            print("Guess lower number") # Hint: number is smaller
 
     replay = input("Do you want to play again? ")
     if replay.lower() == "yes":
-        limit_replay+=1
+        limit_replay += 1
         continue
     else:
         print("Thanks for playing, bye!")
