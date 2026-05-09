@@ -52,6 +52,9 @@ while True:
         try:
             # Ask the user to guess the number and convert input to integer
             guess = int(input(f"Guess a number between 1 and {upper_limit} :"))
+            if guess < 1 or guess > upper_limit :
+                print("The number you entered is Out of Range")
+                continue
         except:
             print("Please enter a whole number!")
             continue #skip to next iteration
