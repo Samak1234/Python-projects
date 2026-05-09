@@ -22,13 +22,16 @@ while True:
         difficulty = int(input("Choose difficulty level: "))
         # Generate a random number based on difficulty (this stays constant for one game)
         if difficulty == 1:
-            secret = random.randint(1, 50)
+            upper_limit=50
+            secret = random.randint(1, upper_limit)
             max_attempts = 20
         elif difficulty == 2:
-            secret = random.randint(1, 100)
+            upper_limit=100
+            secret = random.randint(1, upper_limit)
             max_attempts = 10
         else:
-            secret = random.randint(1, 500)
+            upper_limit=500
+            secret = random.randint(1, upper_limit)
             max_attempts = 7
     except:
         print("Please enter a valid number!")
@@ -46,7 +49,7 @@ while True:
             break #stop the game
         try:
             # Ask the user to guess the number and convert input to integer
-            guess = int(input("Guess a number between 1 and 100: "))
+            guess = int(input(f"Guess a number between 1 and {upper_limit} :"))
         except:
             print("Please enter a whole number!")
             continue #skip to next iteration
