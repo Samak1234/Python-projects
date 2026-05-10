@@ -12,22 +12,25 @@ import random # Built-in module used to generate random numbers
 
 best_attempt = float('inf')
 limit_replay = 0
-
+score=0
 while True:
     hint_shown= False
     if limit_replay >= 3:
         print("Number of replays Exhausted")
         break
 
-    print("choose difficulty 1.Easy 2.Medium 3.Tough")
+    print("choose difficulty"
+          "1.Easy" 
+          "2.Medium"
+          "3.Tough")
     try:
-        difficulty = int(input("Choose difficulty level: "))
+        difficulty = input("Choose difficulty level: ").lower()
         # Generate a random number based on difficulty (this stays constant for one game)
-        if difficulty == 1:
+        if difficulty == "easy":
             upper_limit = 50
             secret = random.randint(1, upper_limit)
             max_attempts = 20
-        elif difficulty == 2:
+        elif difficulty == "medium":
             upper_limit = 100
             secret = random.randint(1, upper_limit)
             max_attempts = 10
@@ -68,6 +71,8 @@ while True:
                  
              else:
                  print("Hint:number is Odd")
+             if secret%5==0:
+                print("Hint:number is divisble by 5")
              hint_shown = True
         # Check if the guess matches the secret number
         if guess == secret:
