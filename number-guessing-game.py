@@ -14,12 +14,12 @@ import random  # Built-in module used to generate random numbers
 
 best_attempt = float('inf')
 limit_replay = 0
-score = 0
+
 
 while True:
 
     hint_shown = False
-
+ 
     if limit_replay >= 3:
         print("Number of replays Exhausted")
         break
@@ -31,19 +31,19 @@ while True:
 
     # Generate a random number based on difficulty (this stays constant for one game)
     difficulty = input("Choose difficulty level: ").lower()
-
+    score = 0
     if difficulty == "easy":
         upper_limit = 50
         max_attempts = 20
-
+        score=50
     elif difficulty == "medium":
         upper_limit = 100
         max_attempts = 10
-
+        score=100
     elif difficulty == "hard":
         upper_limit = 500
         max_attempts = 7
-
+        score=200
     else:
         print("Please choose easy, medium, or hard!")
         continue
@@ -77,7 +77,7 @@ while True:
                 f"Guess a number between 1 and {upper_limit} "
                 f"(or type quit): "
             ).lower()
-
+            
             # Exit option for user
             if guess_input in ["quit", "exit", "q"]:
                 print("You exited the game")
@@ -89,7 +89,7 @@ while True:
 
             # Convert input to integer after validation
             guess = int(guess_input)
-
+                
             # Check if guess is within valid range
             if guess < 1 or guess > upper_limit:
                 print("The number you entered is Out of Range")
@@ -98,10 +98,10 @@ while True:
         except ValueError:
             print("Please enter a whole number!")
             continue  # skip to next iteration
-
+        
         # Increment attempt count after each guess
         no_of_attempts += 1
-
+        
         # Store valid guesses inside list
         guesses.append(guess)
 
@@ -141,10 +141,13 @@ while True:
 
         elif guess < secret:
             print("Guess Higher number")  # Hint: number is bigger
-
+            score-=10
         else:
             print("Guess lower number")  # Hint: number is smaller
-
+            score-=10
+        if score < 0:
+            score = 0
+    
     replay = input("\nDo you want to play again? ").lower()
 
     if replay == "yes":
@@ -153,7 +156,7 @@ while True:
 
     else:
         print("Thanks for playing, bye!")
-
+        print(f"Game Over. Final Score: {score}")
         if best_attempt != float('inf'):
             print(f"Your best score this session: {best_attempt} attempts")
 
