@@ -13,6 +13,8 @@ Number Guessing Game
 - Quit option available during guessing
 """
 
+from difficulty import choose_difficulty 
+
 import random  # Built-in module used to generate random numbers
 
 best_attempt = float('inf')
@@ -25,32 +27,19 @@ while True:
     if limit_replay >= 3:
         print("Number of replays Exhausted")
         break
-
-def choose_difficulty(difficulty):
-
     print("\nChoose difficulty:")
     print("easy")
     print("medium")
     print("hard")
 
-    # Generate a random number based on difficulty (this stays constant for one game)
     difficulty = input("Choose difficulty level: ").lower()
-    score = 0
-    if difficulty == "easy":
-        upper_limit = 50
-        max_attempts = 20
-        score=50
-    elif difficulty == "medium":
-        upper_limit = 100
-        max_attempts = 10
-        score=100
-    elif difficulty == "hard":
-        upper_limit = 500
-        max_attempts = 7
-        score=200
-    else:
+
+    upper_limit, max_attempts, score = choose_difficulty(difficulty)
+
+    if upper_limit is None:
         print("Please choose easy, medium, or hard!")
         continue
+
 
     # Secret number generated after difficulty selection
     secret = random.randint(1, upper_limit)
