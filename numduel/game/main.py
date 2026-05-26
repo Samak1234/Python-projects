@@ -16,6 +16,7 @@ Number Guessing Game
 from difficulty import choose_difficulty 
 from hints import show_hint
 from validators import is_valid_guess
+from scoring import reducing_score
 import random  # Built-in module used to generate random numbers
 
 best_attempt = float('inf')
@@ -128,10 +129,10 @@ while True:
 
         elif guess < secret:
             print("Guess Higher number")  # Hint: number is bigger
-            score-=10
+            score = reducing_score(score)
         else:
             print("Guess lower number")  # Hint: number is smaller
-            score-=10
+            score = reducing_score(score)
         if score < 0:
             score = 0
     
