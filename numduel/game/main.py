@@ -17,6 +17,7 @@ from difficulty import choose_difficulty
 from hints import show_hint
 from validators import is_valid_guess
 from scoring import reducing_score
+from replay import wants_replay
 import random  # Built-in module used to generate random numbers
 
 best_attempt = float('inf')
@@ -136,10 +137,8 @@ while True:
         if score < 0:
             score = 0
     
-    replay = input("\nDo you want to play again? ").lower()
-
-    if replay == "yes":
-        limit_replay += 1
+    if wants_replay():
+        limit_replay +=1
         continue
 
     else:
