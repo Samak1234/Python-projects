@@ -15,6 +15,7 @@ Number Guessing Game
 
 from difficulty import choose_difficulty 
 from hints import show_hint
+from validators import is_valid_guess
 import random  # Built-in module used to generate random numbers
 
 best_attempt = float('inf')
@@ -84,7 +85,7 @@ while True:
             guess = int(guess_input)
                 
             # Check if guess is within valid range
-            if guess < 1 or guess > upper_limit:
+            if not is_valid_guess(guess, upper_limit):
                 print("The number you entered is Out of Range")
                 continue
 
