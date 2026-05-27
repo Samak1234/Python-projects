@@ -18,6 +18,7 @@ from hints import show_hint
 from validators import is_valid_guess
 from scoring import reducing_score
 from replay import wants_replay
+from leaderboard import save_score
 import random  # Built-in module used to generate random numbers
 
 best_attempt = float('inf')
@@ -116,7 +117,7 @@ while True:
 
             print("Ps you got it, Congratulations it's Correct Man")  # User guessed correctly
             print(f"You got it in {no_of_attempts} attempts")
-
+            save_score(no_of_attempts)
             # Show guess history after winning
             print(f"Your guesses were: {guesses}")
 
