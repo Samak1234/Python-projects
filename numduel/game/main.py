@@ -19,6 +19,7 @@ from validators import is_valid_guess
 from scoring import reducing_score
 from replay import wants_replay
 from leaderboard import save_score
+from leaderboard import show_leaderboard
 import random  # Built-in module used to generate random numbers
 
 best_attempt = float('inf')
@@ -147,5 +148,6 @@ while True:
         print(f"Game Over. Final Score: {score}")
         if best_attempt != float('inf'):
             print(f"Your best score this session: {best_attempt} attempts")
+            show_leaderboard()
 
         break
