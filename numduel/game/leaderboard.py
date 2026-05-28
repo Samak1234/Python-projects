@@ -22,6 +22,6 @@ def show_leaderboard():
 
     print("\nLeaderboard: ")
 
-    for score in data:
+    for index,score in enumerate(data,start=1):
 
-        print(score)
+        print(f"{index}.{score['attempts']}attempts")
